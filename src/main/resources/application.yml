@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: merchant-notification-service
+
+
+logging:
+  file: logs/application.log
+  file.max-size: 10MB
+  level:
+    org.apache.http: DEBUG
+    org.springframework.cloud.sleuth: INFO
+    com.netflix.discovery.DiscoveryClient: INFO
+    com.pagatech.merchant.notification: DEBUG
+  path: /opt/app/payroll/logs
+
+server:
+  port: 9993
+  compression:
+    enabled: true
+    min-response-size: 1
+
+
+
+

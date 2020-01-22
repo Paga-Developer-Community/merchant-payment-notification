@@ -1,0 +1,8 @@
+2020-01-15 15:46:42.591  INFO 5291 --- [main] n.MerchantNotificationServiceApplication : Starting MerchantNotificationServiceApplication on PagaAdmins-BabsEngineering.local with PID 5291 (/Users/bowolabi/IdeaProjects/merchant-notification-service/out/production/classes started by bowolabi in /Users/bowolabi/IdeaProjects/merchant-notification-service)
+2020-01-15 15:46:42.593 DEBUG 5291 --- [main] n.MerchantNotificationServiceApplication : Running with Spring Boot v2.1.11.RELEASE, Spring v5.1.12.RELEASE
+2020-01-15 15:46:42.593  INFO 5291 --- [main] n.MerchantNotificationServiceApplication : No active profile set, falling back to default profiles: default
+2020-01-15 15:46:42.952  INFO 5291 --- [main] n.MerchantNotificationServiceApplication : Started MerchantNotificationServiceApplication in 0.72 seconds (JVM running for 1.268)
+2020-01-15 15:48:03.977  INFO 5337 --- [Test worker] chantNotificationServiceApplicationTests : Starting MerchantNotificationServiceApplicationTests on PagaAdmins-BabsEngineering.local with PID 5337 (started by bowolabi in /Users/bowolabi/IdeaProjects/merchant-notification-service)
+2020-01-15 15:48:03.978 DEBUG 5337 --- [Test worker] chantNotificationServiceApplicationTests : Running with Spring Boot v2.1.11.RELEASE, Spring v5.1.12.RELEASE
+2020-01-15 15:48:03.978  INFO 5337 --- [Test worker] chantNotificationServiceApplicationTests : No active profile set, falling back to default profiles: default
+2020-01-15 15:48:04.408  INFO 5337 --- [Test worker] chantNotificationServiceApplicationTests : Started MerchantNotificationServiceApplicationTests in 0.66 seconds (JVM running for 1.331)
