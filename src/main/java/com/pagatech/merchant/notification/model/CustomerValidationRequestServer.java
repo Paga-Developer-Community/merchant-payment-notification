@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerValidationRequest  extends ServerPaymentRequest{
+public class CustomerValidationRequestServer extends RequestServer {
 
     @NotNull(message = "customer account number cannot be empty")
     private String customerAccountNumber;

@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ServerPaymentRequest {
+public class RequestServer {
 
     @NotNull(message = "request must contain either true or false")
     private boolean isTest;

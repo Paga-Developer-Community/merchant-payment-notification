@@ -1,6 +1,5 @@
 package com.pagatech.merchant.notification;
 
-import com.google.gson.Gson;
 import com.pagatech.merchant.notification.model.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -77,12 +76,12 @@ public class MerchantPaymentNotificationIntegrationTest {
 
 
 
-    private HttpEntity<ServerPaymentRequest> setupHttpEntityServerPaymentRequest() {
+    private HttpEntity<RequestServer> setupHttpEntityServerPaymentRequest() {
         HttpHeaders requestHeaders = getHttpHeaders();
-        ServerPaymentRequest serverPaymentRequest = ServerPaymentRequest.builder()
+        RequestServer requestServer = RequestServer.builder()
                 .isTest(true)
                 .build();
-         HttpEntity <ServerPaymentRequest> httpEntity = new HttpEntity<>(serverPaymentRequest, requestHeaders);
+         HttpEntity <RequestServer> httpEntity = new HttpEntity<>(requestServer, requestHeaders);
 
          return httpEntity;
     }
@@ -97,12 +96,12 @@ public class MerchantPaymentNotificationIntegrationTest {
         return requestHeaders;
     }
 
-    private HttpEntity<CustomerValidationRequest> setupHttpEntityCustomerValidation() { HttpHeaders requestHeaders = getHttpHeaders();
-       CustomerValidationRequest customerValidationRequest = new CustomerValidationRequest();
+    private HttpEntity<CustomerValidationRequestServer> setupHttpEntityCustomerValidation() { HttpHeaders requestHeaders = getHttpHeaders();
+       CustomerValidationRequestServer customerValidationRequest = new CustomerValidationRequestServer();
        customerValidationRequest.setTest(true);
        customerValidationRequest.setCustomerAccountNumber("1111111111");
         //arrange | given
-        HttpEntity <CustomerValidationRequest> httpEntity = new HttpEntity<>(customerValidationRequest, requestHeaders);
+        HttpEntity <CustomerValidationRequestServer> httpEntity = new HttpEntity<>(customerValidationRequest, requestHeaders);
 
         return httpEntity;
     }

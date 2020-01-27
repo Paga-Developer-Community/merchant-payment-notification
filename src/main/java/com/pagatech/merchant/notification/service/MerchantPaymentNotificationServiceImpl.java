@@ -19,7 +19,7 @@ public class MerchantPaymentNotificationServiceImpl implements MerchantPaymentNo
 
 
     @Override
-    public SupportedMerchantServiceResponse getSupportedIntegationServices(ServerPaymentRequest serverRequest) throws PaymentNotificationException {
+    public SupportedMerchantServiceResponse getSupportedIntegationServices(RequestServer serverRequest) throws PaymentNotificationException {
 
         if(serverRequest == null){
             throw new PaymentNotificationException("request cannot be null");
@@ -40,7 +40,7 @@ public class MerchantPaymentNotificationServiceImpl implements MerchantPaymentNo
     }
 
     @Override
-    public CustomerValidationResponse validateCustomer(CustomerValidationRequest customerValidationRequest) throws ModelNotFoundException {
+    public CustomerValidationResponse validateCustomer(CustomerValidationRequestServer customerValidationRequest) throws ModelNotFoundException {
 
         log.info("about to validate customer {} ", customerValidationRequest);
 
@@ -119,7 +119,7 @@ public class MerchantPaymentNotificationServiceImpl implements MerchantPaymentNo
     }
 
     @Override
-    public MerchantServiceResponse getMerchantService(ServerPaymentRequest serverRequest) throws PaymentNotificationException {
+    public MerchantServiceResponse getMerchantService(RequestServer serverRequest) throws PaymentNotificationException {
         MerchantServiceResponse merchantServiceResponse = new MerchantServiceResponse();
 
         if(serverRequest == null){
@@ -136,7 +136,7 @@ public class MerchantPaymentNotificationServiceImpl implements MerchantPaymentNo
     }
 
     @Override
-    public SubmitTransactionResponse submitTransaction(SubmitTransactionRequest submitTransactionRequest) throws ModelAlreadyExistException, ModelNotFoundException {
+    public SubmitTransactionResponse submitTransaction(SubmitTransactionRequestServer submitTransactionRequest) throws ModelAlreadyExistException, ModelNotFoundException {
         log.info("submit transaction request {} ", submitTransactionRequest);
 
         //check if customer exist
