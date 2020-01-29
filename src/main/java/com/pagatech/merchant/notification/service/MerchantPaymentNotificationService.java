@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface MerchantPaymentNotificationService {
     SupportedMerchantServiceResponse getSupportedIntegationServices(RequestServer serverRequest) throws PaymentNotificationException;
 
-    CustomerValidationResponse validateCustomer(CustomerValidationRequestServer customerValidationRequest) throws PaymentNotificationException, ModelNotFoundException;
+    CustomerValidationResponse validateCustomer(CustomerValidationRequest customerValidationRequest) throws PaymentNotificationException, ModelNotFoundException;
 
     Customer getCustomerDetails(String customerAccountNumber);
 
@@ -19,7 +19,7 @@ public interface MerchantPaymentNotificationService {
 
     MerchantServiceResponse getMerchantService(RequestServer serverRequest) throws PaymentNotificationException;
 
-    SubmitTransactionResponse submitTransaction(SubmitTransactionRequestServer submitTransactionRequest) throws ModelAlreadyExistException, ModelNotFoundException;
+    SubmitTransactionResponse submitTransaction(SubmitTransactionRequest submitTransactionRequest) throws ModelAlreadyExistException, ModelNotFoundException;
 
     List<Transaction> retrieveAllTransactions();
 

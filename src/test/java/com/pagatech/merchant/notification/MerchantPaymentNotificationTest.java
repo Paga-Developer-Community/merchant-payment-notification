@@ -64,7 +64,7 @@ class MerchantPaymentNotificationTest {
     @Test
     @DisplayName("validate customer a valid customer")
     void customerValidationTest() throws PaymentNotificationException, ModelNotFoundException {
-        CustomerValidationRequestServer customerValidationRequest = new CustomerValidationRequestServer();
+        CustomerValidationRequest customerValidationRequest = new CustomerValidationRequest();
 
         String validAccountNumber = "1100110011";
         customerValidationRequest.setCustomerAccountNumber(validAccountNumber);
@@ -81,7 +81,7 @@ class MerchantPaymentNotificationTest {
     @Test
     @DisplayName("validate customer invalid customer")
     void validateInvalidCustomerTest() {
-        CustomerValidationRequestServer customerValidationRequest = new CustomerValidationRequestServer();
+        CustomerValidationRequest customerValidationRequest = new CustomerValidationRequest();
 
         String invalidAccountNumber = "28392901";
         customerValidationRequest.setCustomerAccountNumber(invalidAccountNumber);
@@ -140,7 +140,7 @@ class MerchantPaymentNotificationTest {
     @Test
     @DisplayName("create or perform a valid submit transaction request")
     void testCreateSubmitTransaction() throws ModelAlreadyExistException, ModelNotFoundException {
-        SubmitTransactionRequestServer submitTransactionRequest = new SubmitTransactionRequestServer();
+        SubmitTransactionRequest submitTransactionRequest = new SubmitTransactionRequest();
 
         submitTransactionRequest.setTransaction(Transaction.builder()
                         .services(merchantPaymentNotificationService.retrieveMerchantServices())
@@ -171,7 +171,7 @@ class MerchantPaymentNotificationTest {
     @Test
     @DisplayName("create or perform a valid submit transaction request")
     void createSubmitTransactionShouldReturnModelAlreadyExistException() {
-        SubmitTransactionRequestServer submitTransactionRequest = new SubmitTransactionRequestServer();
+        SubmitTransactionRequest submitTransactionRequest = new SubmitTransactionRequest();
         submitTransactionRequest.setTransaction(Transaction.builder()
                 .merchantTransactionId("BP-C_2018061315273249_1448479_XBFJX")
                 .customerReference("1100110011")

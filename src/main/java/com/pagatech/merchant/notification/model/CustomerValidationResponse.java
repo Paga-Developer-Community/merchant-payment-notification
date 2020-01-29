@@ -19,16 +19,15 @@ public class CustomerValidationResponse  extends Response  {
 
     private String paymentDueDate;
 
-    private boolean isValid;
+    private Boolean isValid;
 
     private String lastPaymentDate;
 
-    private boolean isDisplayed;
+    private Boolean isDisplayed;
 
     private String message;
 
     private String status;
 
-    private String accountNumber;
 
 }

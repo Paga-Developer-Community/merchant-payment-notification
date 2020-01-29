@@ -40,24 +40,25 @@ public class MerchantPaymentNotificationServiceImpl implements MerchantPaymentNo
     }
 
     @Override
-    public CustomerValidationResponse validateCustomer(CustomerValidationRequestServer customerValidationRequest) throws ModelNotFoundException {
+    public CustomerValidationResponse validateCustomer(CustomerValidationRequest customerValidationRequest) throws ModelNotFoundException {
 
         log.info("about to validate customer {} ", customerValidationRequest);
 
        Customer customer = getCustomerDetails(customerValidationRequest.getCustomerAccountNumber());
 
+       log.info("customer found {} ", customer);
+
        if(customer == null){
           throw new ModelNotFoundException("customer does not exist");
        }
 
-        return CustomerValidationResponse.builder()
+      return CustomerValidationResponse.builder()
                 .status("SUCCESS")
-                .accountNumber(customer.getAccountNumber())
                 .accountStatus(customer.getAccountStatus())
                 .firstName(customer.getFirstName())
                 .lastName(customer.getLastName())
                 .lastPaymentDate(customer.getLastPaymentDate())
-                .message("successfully retrieved customer")
+                .message("Notification processed successfully")
                 .paymentDueDate(customer.getPaymentDueDate())
                 .isDisplayed(true)
                 .isValid(true)
@@ -88,8 +89,8 @@ public class MerchantPaymentNotificationServiceImpl implements MerchantPaymentNo
                 .isDisplayed(true)
                 .lastName("Owolabi")
                 .accountNumber("1100110011")
-                .lastPaymentDate("27/10/2010")
-                .paymentDueDate("21/11/2010")
+                .lastPaymentDate("2019-12-11")
+                .paymentDueDate("2020-02-11")
                 .isValid(true)
                 .build());
 
@@ -136,7 +137,7 @@ public class MerchantPaymentNotificationServiceImpl implements MerchantPaymentNo
     }
 
     @Override
-    public SubmitTransactionResponse submitTransaction(SubmitTransactionRequestServer submitTransactionRequest) throws ModelAlreadyExistException, ModelNotFoundException {
+    public SubmitTransactionResponse submitTransaction(SubmitTransactionRequest submitTransactionRequest) throws ModelAlreadyExistException, ModelNotFoundException {
         log.info("submit transaction request {} ", submitTransactionRequest);
 
         //check if customer exist

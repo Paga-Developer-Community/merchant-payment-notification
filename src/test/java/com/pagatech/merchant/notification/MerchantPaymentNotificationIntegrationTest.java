@@ -31,40 +31,40 @@ public class MerchantPaymentNotificationIntegrationTest {
     @DisplayName("As a user I want to be able to get supported services")
     void testSendSingleSms() {
         //act | when
-        ResponseEntity<SupportedMerchantServiceResponse> response =
-                restTemplate.postForEntity("/svc/v1/getIntegrationServices", setupHttpEntityServerPaymentRequest(),
+        SupportedMerchantServiceResponse response =
+                restTemplate.postForObject("/svc/v1/getIntegrationServices", setupHttpEntityServerPaymentRequest(),
                         SupportedMerchantServiceResponse.class);
         //assert |then
 
-        assertThat(response.getStatusCode())
-                .as("Response code should be 200 OK but is %s", response.getStatusCode())
-                .isEqualTo(HttpStatus.OK);
+        assertThat(!response.getServices().isEmpty())
+                .as("Response size should not be empty  but is %s", response.getServices().size())
+                .isTrue();
     }
 
 
     @Test
     @DisplayName("want to validate customer request")
     void testValidateCustomer(){
-        ResponseEntity<CustomerValidationResponse> response = restTemplate.postForEntity("/svc/v1/validateCustomer",
+        CustomerValidationResponse response = restTemplate.postForObject("/svc/v1/validateCustomer",
                 setupHttpEntityCustomerValidation(), CustomerValidationResponse.class);
 
-        assertThat(response.getStatusCode())
-                .as("Response code should be 200 OK but is %s", response.getStatusCode())
-                .isEqualTo(HttpStatus.OK);
+        assertThat(response.getStatus())
+                .as("Response code should be 200 OK but is %s", response.getStatus())
+                .isEqualTo("SUCCESS");
     }
 
     @Test
     @DisplayName("want to get the merchant services")
     void testGetMerchantServices(){
-        ResponseEntity<MerchantServiceResponse>response = restTemplate.postForEntity("/svc/v1/getMerchantServices",
+        MerchantServiceResponse  response = restTemplate.postForObject("/svc/v1/getMerchantServices",
                 setupHttpEntityServerPaymentRequest(), MerchantServiceResponse.class);
 
-        assertThat(response.getStatusCode())
-                .as("Response code should be 200 OK but is %s", response.getStatusCode())
-                .isEqualTo(HttpStatus.OK);
+        assertThat(response.getStatus())
+                .as("Response Status should be SUCCESS  but is %s", response.getStatus())
+                .isEqualTo("SUCCESS");
     }
 
-    @Test
+  /*  @Test
     @DisplayName("want to test submit transaction")
     void testSubmitTransaction(){
         ResponseEntity<SubmitTransactionResponse>response = restTemplate.postForEntity("/svc/v1/submitTransaction",
@@ -72,7 +72,7 @@ public class MerchantPaymentNotificationIntegrationTest {
         assertThat(response.getStatusCode())
                 .as("Response code should be 200 OK but is %s", response.getStatusCode())
                 .isEqualTo(HttpStatus.OK);
-    }
+    }*/
 
 
 
@@ -81,9 +81,8 @@ public class MerchantPaymentNotificationIntegrationTest {
         RequestServer requestServer = RequestServer.builder()
                 .isTest(true)
                 .build();
-         HttpEntity <RequestServer> httpEntity = new HttpEntity<>(requestServer, requestHeaders);
+         return new HttpEntity<>(requestServer, requestHeaders);
 
-         return httpEntity;
     }
 
     private HttpHeaders getHttpHeaders() {
@@ -96,13 +95,15 @@ public class MerchantPaymentNotificationIntegrationTest {
         return requestHeaders;
     }
 
-    private HttpEntity<CustomerValidationRequestServer> setupHttpEntityCustomerValidation() { HttpHeaders requestHeaders = getHttpHeaders();
-       CustomerValidationRequestServer customerValidationRequest = new CustomerValidationRequestServer();
-       customerValidationRequest.setTest(true);
-       customerValidationRequest.setCustomerAccountNumber("1111111111");
-        //arrange | given
-        HttpEntity <CustomerValidationRequestServer> httpEntity = new HttpEntity<>(customerValidationRequest, requestHeaders);
+    private HttpEntity<CustomerValidationRequest> setupHttpEntityCustomerValidation() { HttpHeaders requestHeaders = getHttpHeaders();
 
-        return httpEntity;
+        //arrange | given
+       return new HttpEntity<>(CustomerValidationRequest.builder()
+               .customerAccountNumber("1100110011")
+               .isTest(true)
+               .customerFirstName("Babs")
+               .customerLastName("James")
+               .build(), requestHeaders);
+
     }
 }

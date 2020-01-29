@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class RequestServer {
 
-    @NotNull(message = "request must contain either true or false")
+    @NotBlank(message = "request must contain either true or false")
     private boolean isTest;
 
 }
